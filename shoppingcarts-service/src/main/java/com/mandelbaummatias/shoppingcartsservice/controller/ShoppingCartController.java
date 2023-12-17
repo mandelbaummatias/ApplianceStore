@@ -4,6 +4,7 @@ import com.mandelbaummatias.shoppingcartsservice.entity.ShoppingCart;
 import com.mandelbaummatias.shoppingcartsservice.model.ProductDTO;
 import com.mandelbaummatias.shoppingcartsservice.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,9 @@ public class ShoppingCartController {
     @Autowired
     private ShoppingCartService shoppingCartService;
 
+    @Value("${server.port}")
+    private int serverPort;
+
     @GetMapping("/getAll")
     public ResponseEntity<List<ShoppingCart>> getAllShoppingCarts() {
         List<ShoppingCart> shoppingCarts = shoppingCartService.getAllShoppingCarts();
@@ -26,6 +30,7 @@ public class ShoppingCartController {
     }
 
     @GetMapping("/{id}")
+
     public ResponseEntity<ShoppingCart> getShoppingCartById(@PathVariable int id) {
         ShoppingCart shoppingCart = shoppingCartService.getShoppingCartById(id);
         if (shoppingCart != null) {
@@ -37,6 +42,7 @@ public class ShoppingCartController {
 
     @PostMapping("/create")
     public ResponseEntity<?> createShoppingCart(@RequestBody ShoppingCart shoppingCart) {
+        System.out.println("At port:" + serverPort);
         try {
             ShoppingCart createdShoppingCart = shoppingCartService.createShoppingCart(shoppingCart);
             return new ResponseEntity<>(createdShoppingCart, HttpStatus.CREATED);
