@@ -1,4 +1,4 @@
-package com.mandelbaummatias.shoppingcartsservice.entity;
+package com.mandelbaummatias.salesservice.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
@@ -8,16 +8,14 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
-@Entity
-public class ShoppingCart {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+public class ShoppingCartDTO {
     private int id;
     private double totalAmount;
-    @ElementCollection(fetch = FetchType.EAGER)
-    @JsonFormat
+   // @ElementCollection(fetch = FetchType.EAGER)
+   // @JsonFormat
     private List<Integer> productsId;
 }

@@ -15,6 +15,8 @@ public interface ShoppingCartService {
 
     double getTotalProductsAmount(int id);
 
-    double getTotal();
+    ShoppingCart addProductsToShoppingCart(int id, List<Integer> products);
+
+    ShoppingCart deleteProductsFromShoppingCart(int id, List<Integer> products);
 
 }

@@ -45,11 +45,32 @@ public class ShoppingCartController {
         }
     }
 
+    @PutMapping("/{id}/addProducts")
+    public ResponseEntity<?> addProductsToCart(@PathVariable int id, @RequestBody List<Integer> productIds) {
+        try {
+            ShoppingCart modifiedShoppingCart = shoppingCartService.addProductsToShoppingCart(id, productIds);
+            return new ResponseEntity<>(modifiedShoppingCart, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Failed to modify the shoppingCart: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping("/{id}/removeProducts")
+    public ResponseEntity<?> removeProductsFromCart(@PathVariable int id, @RequestBody List<Integer> productIds) {
+        try {
+            ShoppingCart modifiedShoppingCart = shoppingCartService.deleteProductsFromShoppingCart(id,productIds);
+            return new ResponseEntity<>(modifiedShoppingCart, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Failed to delete products from the shoppingCart: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
 //    @GetMapping("/test/{id}")
-//    public ResponseEntity<List<ProductDTO>> getAll(@PathVariable int id) {
-//        List<ProductDTO> shoppingCarts = shoppingCartService.getAllProductsByCartId(id);
-//        return shoppingCarts.isEmpty()
+//    public ResponseEntity<Double> getAll(@PathVariable int id) {
+//        double total = shoppingCartService.getTotalProductsAmount(id);
+//        return total == 0
 //                ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
-//                : new ResponseEntity<>(shoppingCarts, HttpStatus.OK);
+//                : new ResponseEntity<>(total, HttpStatus.OK);
 //    }
 }
