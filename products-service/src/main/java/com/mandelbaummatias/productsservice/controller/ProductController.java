@@ -4,6 +4,7 @@ package com.mandelbaummatias.productsservice.controller;
 import com.mandelbaummatias.productsservice.model.Product;
 import com.mandelbaummatias.productsservice.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,9 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @Value("${server.port}")
+    private int serverPort;
+
     @GetMapping("/getAll")
     public ResponseEntity<List<Product>> getAllProducts() {
         List<Product> products = productService.getAllProducts();
@@ -27,6 +31,7 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable int id) {
+        System.out.println("At port:" + serverPort);
         Product product = productService.getProductById(id);
         if (product != null) {
             return new ResponseEntity<>(product, HttpStatus.OK);
