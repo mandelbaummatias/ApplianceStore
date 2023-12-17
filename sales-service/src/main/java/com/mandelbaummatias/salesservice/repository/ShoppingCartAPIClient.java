@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "shoppingcarts-service")
 public interface ShoppingCartAPIClient {
 
-    @GetMapping("shoppingcarts/{id}")
+    @GetMapping("/shoppingCarts/{id}")
     public ShoppingCartDTO getShoppingCartById(@PathVariable("id") int id);
 }

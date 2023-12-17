@@ -34,8 +34,11 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public ShoppingCart createShoppingCart(ShoppingCart shoppingCart) {
         double total = 0;
+        double price = 0;
         for (Integer productId : shoppingCart.getProductsId()) {
-            total += productAPIClient.getProductById(productId).getPrice();
+            price = productAPIClient.getProductById(productId).getPrice();
+            total += price;
+            System.out.println("price " + price);
         }
 
         shoppingCart.setTotalAmount(total);

@@ -31,8 +31,9 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable int id) {
-        System.out.println("At port:" + serverPort);
+        System.out.println("getProductById controller At port:" + serverPort);
         Product product = productService.getProductById(id);
+        System.out.println("still at port:" + serverPort + "price" + product.getPrice());
         if (product != null) {
             return new ResponseEntity<>(product, HttpStatus.OK);
         } else {
