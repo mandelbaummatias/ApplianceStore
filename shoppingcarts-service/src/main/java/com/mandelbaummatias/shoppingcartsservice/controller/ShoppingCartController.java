@@ -72,11 +72,12 @@ public class ShoppingCartController {
     }
 
 
-//    @GetMapping("/test/{id}")
-//    public ResponseEntity<Double> getAll(@PathVariable int id) {
-//        double total = shoppingCartService.getTotalProductsAmount(id);
-//        return total == 0
-//                ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
-//                : new ResponseEntity<>(total, HttpStatus.OK);
-//    }
+    @GetMapping("/test/{id}")
+    public ResponseEntity<Double> getAll(@PathVariable int id) {
+        System.out.println("test At port:" + serverPort);
+        double total = shoppingCartService.getTotalProductsAmount(id);
+        return total == 0
+                ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
+                : new ResponseEntity<>(total, HttpStatus.OK);
+    }
 }

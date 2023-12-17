@@ -83,7 +83,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         ShoppingCart shoppingCart = getShoppingCartById(id);
         double total = 0;
         for (int product : shoppingCart.getProductsId()) {
-            System.out.println(product);
+          //  System.out.println(product);
             ProductDTO productDTO = productAPIClient.getProductById(product);
             total += productDTO.getPrice();
         }
