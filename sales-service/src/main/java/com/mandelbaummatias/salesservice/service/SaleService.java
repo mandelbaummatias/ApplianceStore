@@ -3,6 +3,7 @@ package com.mandelbaummatias.salesservice.service;
 
 
 import com.mandelbaummatias.salesservice.entity.Sale;
+import com.mandelbaummatias.salesservice.model.ProductDTO;
 import com.mandelbaummatias.salesservice.model.ShoppingCartDTO;
 
 import java.util.List;
@@ -18,6 +19,8 @@ public interface SaleService {
     ShoppingCartDTO getShoppingCartById(int id);
 
     double getTotalAmount(int id);
+
+    List<ProductDTO> getAllProductsFromCart(int id);
 
 
 }

@@ -26,6 +26,7 @@ public class SaleController {
                 : new ResponseEntity<>(sales, HttpStatus.OK);
     }
 
+
     @GetMapping("/{id}")
     public ResponseEntity<Sale> getSaleById(@PathVariable int id) {
         Sale sale = saleService.getSaleById(id);
@@ -66,5 +67,13 @@ public class SaleController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping("/shoppingCart/getAllProducts/{id}")
+    public ResponseEntity<?> getAllProductsFromCart(@PathVariable int id) {
+        val products = saleService.getAllProductsFromCart(id);
+        return products.isEmpty() ?
+                new ResponseEntity<>(HttpStatus.NO_CONTENT) :
+                new ResponseEntity<>(products, HttpStatus.OK);
     }
 }

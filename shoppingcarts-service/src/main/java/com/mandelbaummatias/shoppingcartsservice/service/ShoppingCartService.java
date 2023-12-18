@@ -19,4 +19,6 @@ public interface ShoppingCartService {
 
     ShoppingCart deleteProductsFromShoppingCart(int id, List<Integer> products);
 
+    List<ProductDTO> getProductsListById(int id);
+
 }

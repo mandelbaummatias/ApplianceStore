@@ -1,6 +1,7 @@
 package com.mandelbaummatias.salesservice.service;
 
 import com.mandelbaummatias.salesservice.entity.Sale;
+import com.mandelbaummatias.salesservice.model.ProductDTO;
 import com.mandelbaummatias.salesservice.model.ShoppingCartDTO;
 import com.mandelbaummatias.salesservice.repository.ShoppingCartAPIClient;
 import com.mandelbaummatias.salesservice.repository.SaleRepository;
@@ -31,30 +32,30 @@ public class SaleServiceImpl implements SaleService {
 
     @Override
     public Sale createSale(Sale sale) {
-//        double total = 0;
-//        for (Integer shoppingCartId : sale.getShoppingCartsId()) {
-//            total += shoppingCartAPIClient.getShoppingCartById(shoppingCartId).getPrice();
-//        }
-//
-//        sale.setTotalAmount(total);
-//
-//        return saleRepository.save(sale);
-        return new Sale();
+        return saleRepository.save(sale);
     }
 
     @Override
     public ShoppingCartDTO getShoppingCartById(int id) {
-        return shoppingCartAPIClient.getShoppingCartById(id);
+        val sale = this.getSaleById(id);
+        return shoppingCartAPIClient.getShoppingCartById(sale.getCartId());
     }
 
     @Override
     public double getTotalAmount(int id) {
-        val cart = this.getShoppingCartById(id);
-        if(cart != null){
+        val sale = this.getSaleById(id);
+        val cart = this.getShoppingCartById(sale.getCartId());
+        if (cart != null) {
             return cart.getTotalAmount();
-        } else{
+        } else {
             return 0;
         }
+    }
+
+    @Override
+    public List<ProductDTO> getAllProductsFromCart(int id) {
+        val sale = this.getSaleById(id);
+        return shoppingCartAPIClient.getAllProductsFromCart(sale.getCartId());
     }
 
 

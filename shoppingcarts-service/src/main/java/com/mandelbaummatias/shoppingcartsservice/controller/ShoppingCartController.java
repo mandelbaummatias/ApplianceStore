@@ -92,4 +92,12 @@ public class ShoppingCartController {
                 ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
                 : new ResponseEntity<>(total, HttpStatus.OK);
     }
+
+    @GetMapping("/getAllProducts/{id}")
+    public ResponseEntity<List<ProductDTO>> getAllProductsById(@PathVariable int id) {
+        List<ProductDTO> products = shoppingCartService.getProductsListById(id);
+        return products.isEmpty() ?
+                new ResponseEntity<>(HttpStatus.NO_CONTENT) :
+                new ResponseEntity<>(products, HttpStatus.OK);
+    }
 }
