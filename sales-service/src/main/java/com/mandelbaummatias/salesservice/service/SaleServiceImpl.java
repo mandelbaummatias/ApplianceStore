@@ -4,6 +4,7 @@ import com.mandelbaummatias.salesservice.entity.Sale;
 import com.mandelbaummatias.salesservice.model.ShoppingCartDTO;
 import com.mandelbaummatias.salesservice.repository.ShoppingCartAPIClient;
 import com.mandelbaummatias.salesservice.repository.SaleRepository;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +45,16 @@ public class SaleServiceImpl implements SaleService {
     @Override
     public ShoppingCartDTO getShoppingCartById(int id) {
         return shoppingCartAPIClient.getShoppingCartById(id);
+    }
+
+    @Override
+    public double getTotalAmount(int id) {
+        val cart = this.getShoppingCartById(id);
+        if(cart != null){
+            return cart.getTotalAmount();
+        } else{
+            return 0;
+        }
     }
 
 

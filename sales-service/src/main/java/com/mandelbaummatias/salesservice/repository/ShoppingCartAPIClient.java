@@ -10,4 +10,7 @@ public interface ShoppingCartAPIClient {
 
     @GetMapping("/shoppingCarts/{id}")
     public ShoppingCartDTO getShoppingCartById(@PathVariable("id") int id);
+
+    @GetMapping("/shoppingCarts/total/{id}")
+    public double getTotalAmountById(@PathVariable("id") int id);
 }

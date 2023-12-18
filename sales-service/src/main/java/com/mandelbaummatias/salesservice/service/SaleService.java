@@ -17,5 +17,7 @@ public interface SaleService {
 
     ShoppingCartDTO getShoppingCartById(int id);
 
+    double getTotalAmount(int id);
+
 
 }

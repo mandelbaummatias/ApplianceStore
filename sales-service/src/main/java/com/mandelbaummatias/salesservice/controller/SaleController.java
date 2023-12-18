@@ -3,6 +3,7 @@ package com.mandelbaummatias.salesservice.controller;
 import com.mandelbaummatias.salesservice.entity.Sale;
 import com.mandelbaummatias.salesservice.model.ShoppingCartDTO;
 import com.mandelbaummatias.salesservice.service.SaleService;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,4 +56,15 @@ public class SaleController {
         }
     }
 
+
+    @GetMapping("/shoppingCart/total/{id}")
+    public ResponseEntity<?> getTotalAmountById(@PathVariable int id) {
+        ShoppingCartDTO shoppingCartDTO = saleService.getShoppingCartById(id);
+        if (shoppingCartDTO != null) {
+            val total = shoppingCartDTO.getTotalAmount();
+            return new ResponseEntity<>(total, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }
