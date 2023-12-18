@@ -2,7 +2,7 @@ spring:
   application:
     name: api-gateway
   server:
-    port: 443
+    port: 80
 
 spring.cloud.gateway:
   discovery:
