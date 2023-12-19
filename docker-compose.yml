@@ -1,0 +1,49 @@
+version: '2.1'
+
+services:
+  eureka-sv:
+    build: eureka-sv
+    mem_limit: 512m
+    ports:
+      - "8761:8761"
+    networks:
+      - 'appliancestore-network'
+  products-service:
+    build: products-service
+    mem_limit: 512m
+    ports:
+      - "8082:8082"
+      - "8083:8083"
+    networks:
+      - 'appliancestore-network'
+  shoppingcarts-service:
+    build: shoppingcarts-service
+    mem_limit: 512m
+    ports:
+      - "8085:8085"
+    networks:
+      - 'appliancestore-network'
+  sales-service:
+    build: sales-service
+    mem_limit: 512m
+    ports:
+      - "8084:8084"
+    networks:
+      - 'appliancestore-network'
+  api-gateway:
+    build: api-gateway
+    mem_limit: 512m
+    ports:
+      - "8888:8888"
+    networks:
+      - 'appliancestore-network'
+  config-server:
+    build: config-server
+    mem_limit: 512m
+    ports:
+      - "8081:8081"
+    networks:
+      - 'appliancestore-network'
+      
+networks:
+  appliancestore-network:
