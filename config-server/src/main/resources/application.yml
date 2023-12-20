@@ -14,4 +14,9 @@ spring:
           username: ${GIT_USER}
           password: ${GIT_PASSWORD}
 
-
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka-sv:8761/eureka/
