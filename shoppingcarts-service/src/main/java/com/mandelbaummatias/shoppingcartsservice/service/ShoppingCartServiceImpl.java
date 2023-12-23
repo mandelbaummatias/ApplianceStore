@@ -49,7 +49,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
         shoppingCart.setTotalAmount(total);
 
-        createException();
+      //  createException();
 
         return shoppingCartRepository.save(shoppingCart);
     }
