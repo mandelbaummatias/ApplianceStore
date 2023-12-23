@@ -9,7 +9,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/mandelbaummatias/appliancestore.git
+          uri: https://github.com/mandelbaummatias/ApplianceStore.git
           searchPaths: config-data
           username: ${GIT_USER}
           password: ${GIT_PASSWORD}
